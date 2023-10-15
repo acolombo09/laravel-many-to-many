@@ -48,13 +48,28 @@
                         <label class="col-3 col-form-label">Type</label>
                         <div class="col-sm-9">
                         <select class="form-select" aria-label="Default select example" name="type_id">
-                            @foreach ($types as $type)
-                            <option value="{{$type->id}}" {{ $project->type_id == $type->id ? 'selected' : ''}} >{{$type->name}}</option>
+                            @foreach ($technologies as $technology)
+                            <option value="{{$technology->id}}">{{$technology->name}}</option>
                             @endforeach
                         </select>
-                        @error('type_id')
+                        @error('technology_id')
                         <div class="invalid-feedback">{{$message}}</div>
                         @enderror
+                        </div>
+                    </div>
+
+                    {{-- technologies --}}
+                    <div class="row mb-3">
+                        <label class="col-3 col-form-label">Technologies</label>
+                        <div class="col-sm-9 d-flex flex-row">
+                            @foreach ($technologies as $technology)
+                            <div class="d-flex" style="width: fit-content">
+                                {{-- con le quadre dopo technologies faccio capire al server che i dati che voglio passare saranno un array di dati --}}
+                                <input type="checkbox" name="technologies[]" value="{{$technology->id}}" {{
+                                $project->technologies?->contains($technology) ? 'checked' : '' }} class="form-check-input mx-1">
+                                <label class="form-check-label ms-1 me-2">{{$technology->name}}</label>
+                            </div>
+                            @endforeach
                         </div>
                     </div>
 

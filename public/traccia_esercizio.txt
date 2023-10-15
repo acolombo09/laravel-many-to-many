@@ -27,5 +27,8 @@ Bonus 1:
 creare il seeder per il model Technology.
 
 Bonus 2:
-aggiungere le operazioni CRUD per il model Technology, in modo da gestire le tecnologie utilizzate nei progetti direttamente dal pannello di amministrazione.
+aggiungere le operazioni CRUD per il model Technology, in modo da 
+gestire le tecnologie utilizzate nei progetti direttamente 
+dal pannello di amministrazione.
+
 Buon lavoro e buon divertimento!

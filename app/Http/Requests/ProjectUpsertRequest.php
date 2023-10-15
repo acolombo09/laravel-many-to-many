@@ -36,7 +36,8 @@ class ProjectUpsertRequest extends FormRequest
             // tip in classe, exists si assicura che l'id passato esista
             // nella tabella indicata
             // best practice nei validatori
-            "type_id" => "nullable|exists:types,id"
+            "type_id" => "nullable|exists:types,id",
+            "technologies" => "nullable"
         ];
     }
 }
