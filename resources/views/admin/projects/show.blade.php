@@ -34,6 +34,14 @@
                   </p>
                 </div>
                 <div class="d-flex">
+                  <div class="col-3 me-2">Technologies:</div>
+                  <div class="d-flex">
+                    @foreach ($project->technologies as $technology)
+                    <div class="badge me-2" style="background-color: #09a6a6">{{$technology->name}}</div>
+                    @endforeach
+                  </div>
+                </div>
+                <div class="d-flex">
                   <div class="col-3 me-2">Publishing Date: </div>
                   <p>{{ $project->published_at?->format("d/m/Y") }}</p>
                 </div>

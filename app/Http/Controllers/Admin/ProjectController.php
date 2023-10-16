@@ -27,8 +27,9 @@ class ProjectController extends Controller {
     public function create(): View {
 
         $types = Type::all();
+        $technologies = Technology::all();
 
-        return view("admin.projects.create", compact("types"));
+        return view("admin.projects.create", compact("types", "technologies"));
     }
 
     // STORE
@@ -47,6 +48,14 @@ class ProjectController extends Controller {
         // fill e save
         $project = Project::create($data);
 
+        // nello store invece uso l'attach in quanto sto immagazzinando da zero dei dati,
+        // è inutile fare il sync in questo caso
+        // per forza dopo il create/save perchè prima non ci sono i dati da aggiungere al db
+        // con questo if do la disponibilità all'utente di aggiungere un progetto senza technologies
+        if (key_exists("technologies", $data)) {
+            $project->technologies()->attach($data["technologies"]);
+        }
+        
         return redirect()->route("admin.projects.show", $project->slug);
     }
 
@@ -121,6 +130,11 @@ class ProjectController extends Controller {
             // il path mi serve per il db
             $data["image"] = $image_path;
         }
+
+        // prima dell'update devo fare l'assegnazione delle technologies per la tab ponte
+        // con la funzione sync esegue il detach delle technologies non presenti nel nuovo array
+        // poi esegue l'attach solo delle techologies presenti nel vecchio array
+        $project->technologies()->sync($data["technologies"]);
 
         // spostando l'update dopo l'if di is published, posso evitare di inserire i due save
         $project->update($data);

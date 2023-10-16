@@ -48,11 +48,11 @@
                         <label class="col-3 col-form-label">Type</label>
                         <div class="col-sm-9">
                         <select class="form-select" aria-label="Default select example" name="type_id">
-                            @foreach ($technologies as $technology)
-                            <option value="{{$technology->id}}">{{$technology->name}}</option>
+                            @foreach ($types as $type)
+                            <option value="{{$type->id}}" {{ $project->type_id == $type->id ? 'selected' : ''}} >{{$type->name}}</option>
                             @endforeach
                         </select>
-                        @error('technology_id')
+                        @error('type_id')
                         <div class="invalid-feedback">{{$message}}</div>
                         @enderror
                         </div>

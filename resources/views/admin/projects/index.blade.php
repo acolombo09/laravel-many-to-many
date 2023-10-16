@@ -16,6 +16,10 @@
           <p class="badge" style="background-color: rgb({{ $project->type->color }})"> 
             {{ $project->type->name }}
           </p>
+          <br>
+          @foreach ($project->technologies as $technology)
+          <p class="badge" style="background-color: #09a6a6">{{$technology->name}}</p>
+          @endforeach
           <p class="card-text">{{ $project->published_at?->format("d/m/Y") }}</p>
         </div>
       </div>

@@ -50,6 +50,20 @@
                         </div>
                     </div>
 
+                    {{-- technologies --}}
+                    <div class="row mb-3">
+                        <label class="col-3 col-form-label">Technologies</label>
+                        <div class="col-sm-9 d-flex flex-row">
+                            @foreach ($technologies as $technology)
+                            <div class="d-flex" style="width: fit-content">
+                                {{-- con le quadre dopo technologies faccio capire al server che i dati che voglio passare saranno un array di dati --}}
+                                <input type="checkbox" name="technologies[]" value="{{$technology->id}}" class="form-check-input mx-1">
+                                <label class="form-check-label ms-1 me-2">{{$technology->name}}</label>
+                            </div>
+                            @endforeach
+                        </div>
+                    </div>
+
                     {{-- image --}}
                     <div class="mb-3">
                         <label class="form-label">Image</label>
